@@ -11,6 +11,7 @@ class GameEntity:
         self.location = Vector2(0, 0)
         self.destination = Vector2(0, 0)
         self.mind = StateMachine()
+        self.id = 0
 
     def render(self, surface):
         x, y = self.location
