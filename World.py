@@ -1,9 +1,14 @@
+from Vector2 import Vector2
+
 
 class World:
-    def __init__(self, world_img):
+    def __init__(self, world_img, WIDTH_HEIGHT):
         self.entity_group = {}
         self.entity_id = 0
+        self.WIDTH_HEIGHT = WIDTH_HEIGHT
         self.world_img = world_img
+        self.NEST_R = 100
+        self.NEST_location = Vector2(self.NEST_R / 2, self.NEST_R / 2)
 
     def add_entity(self, entity):
         self.entity_group[self.entity_id] = entity

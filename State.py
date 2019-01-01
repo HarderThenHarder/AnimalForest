@@ -1,18 +1,18 @@
-class AntStateExploring:
-    def __init__(self, game_entity):
-        self.entity = game_entity
 
+class State:
 
-class AntStateSeeking:
-    def __init__(self, game_entity):
-        self.entity = game_entity
+    def __init__(self, name):
+        self.name = name
 
+    def do_action(self):
+        pass
 
-class AntStateHunting:
-    def __init__(self, game_entity):
-        self.entity = game_entity
+    def check_condition(self):
+        pass
 
+    def entry_action(self):
+        pass
 
-class AntStateDelivering:
-    def __init__(self, game_entity):
-        self.entity = game_entity
+    def exit_action(self):
+        pass
+
