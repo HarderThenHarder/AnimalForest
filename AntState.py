@@ -60,9 +60,25 @@ class AntStateSeeking(State):
             self.ant.speed = 160 + randint(-20, 20)
 
 
-class AntStateHunting:
+class AntStateHunting(State):
     pass
 
 
-class AntStateDelivering:
-    pass
+class AntStateDelivering(State):
+
+    def __init__(self, ant):
+        State.__init__(self, "delivering")
+        self.ant = ant
+
+    def check_condition(self):
+        if self.ant.world.NEST_location.get_distance_to(self.ant.location) < self.ant.world.NEST_R:
+            # 10% probability to drop
+            if randint(1, 10) == 1:
+                self.ant.drop(self.ant.world.world_img)
+                return "exploring"
+            return None
+
+    def entry_action(self):
+        self.ant.speed = 60
+        offset_vector = Vector2(randint(-5, 5), randint(-5, 5))
+        self.ant.destination = self.ant.world.NEST_location + offset_vector
