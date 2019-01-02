@@ -37,8 +37,27 @@ class AntStateExploring(State):
         self.random_destination()
 
 
-class AntStateSeeking:
-    pass
+class AntStateSeeking(State):
+
+    def __init__(self, ant):
+        State.__init__(self, "seeking")
+        self.ant = ant
+
+    def check_condition(self):
+        leaf = self.ant.world.get_entity(self.ant.leaf_id)
+        if leaf is None:
+            return "exploring"
+        elif self.ant.location.get_distance_to(leaf.location) < 5.0:
+            self.ant.carry(leaf.img)
+            self.ant.world.remove_entity(leaf.id)
+            return "delivering"
+        return None
+
+    def entry_action(self):
+        leaf = self.ant.world.get_entity(self.ant.leaf_id)
+        if leaf:
+            self.ant.destination = leaf.location
+            self.ant.speed = 160 + randint(-20, 20)
 
 
 class AntStateHunting:

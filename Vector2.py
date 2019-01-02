@@ -1,5 +1,6 @@
 import math
 
+
 class Vector2:
 
     def __init__(self, x, y):
@@ -39,9 +40,12 @@ class Vector2:
     def copy(self):
         return Vector2(self.x, self.y)
 
+    def get_distance_to(self, other):
+        assert type(self) == type(other), "Vector2(type) must calculate with Vector2(type)"
+        return math.hypot(self.x - other.x, self.y - other.y)
+
 
 if __name__ == '__main__':
     v1 = Vector2(1, 1)
-    v2 = Vector2(3, 7)
-    v1.normalization()
-    print(v1)
+    v2 = Vector2(2, 2)
+    print(v1.get_distance_to(v2))
