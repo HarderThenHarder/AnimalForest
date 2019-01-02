@@ -27,9 +27,9 @@ def main():
     world = World(world_img, WIDTH_HEIGHT)
 
     # Create animal img
-    ant_img = pygame.image.load(r"img\ant.png").convert_alpha()
-    leaf_img= pygame.image.load(r"img\leaf.png").convert_alpha()
-    spider_img = pygame.image.load(r"img\spider.png").convert_alpha()
+    ant_img = pygame.image.load(r"img\ant.png")
+    leaf_img = pygame.image.load(r"img\leaf.png")
+    spider_img = pygame.image.load(r"img\spider.png")
 
     # Create ant Object
     for i in range(ANT_NUMBER):
@@ -51,7 +51,7 @@ def main():
             leaf.location = Vector2(randint(0, WIDTH_HEIGHT[0]), randint(0, WIDTH_HEIGHT[1]))
             world.add_entity(leaf)
 
-        if randint(1, 100) == 1:
+        if randint(1, 10) == 1:
             spider = Spider(world, spider_img)
             spider.location = Vector2(-50, randint(0, WIDTH_HEIGHT[1]))
             spider.destination = Vector2(WIDTH_HEIGHT[0] + 50, randint(0, WIDTH_HEIGHT[1]))

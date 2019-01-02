@@ -8,7 +8,7 @@ class World:
         self.WIDTH_HEIGHT = WIDTH_HEIGHT
         self.world_img = world_img
         self.NEST_R = 100
-        self.NEST_location = Vector2(self.NEST_R / 2, self.NEST_R / 2)
+        self.NEST_location = Vector2(100 + self.NEST_R / 2, 100 + self.NEST_R / 2)
 
     def add_entity(self, entity):
         self.entity_group[self.entity_id] = entity
@@ -24,7 +24,7 @@ class World:
         return None
 
     def process(self, time_passed):
-        for entity in self.entity_group.values():
+        for entity in list(self.entity_group.values()):
             entity.process(time_passed)
 
     def render(self, surface):
