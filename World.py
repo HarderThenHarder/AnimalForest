@@ -1,4 +1,5 @@
 from Vector2 import Vector2
+import pygame
 
 
 class World:
@@ -8,7 +9,7 @@ class World:
         self.WIDTH_HEIGHT = WIDTH_HEIGHT
         self.world_img = world_img
         self.NEST_R = 100
-        self.NEST_location = Vector2(100 + self.NEST_R / 2, 100 + self.NEST_R / 2)
+        self.NEST_location = Vector2(WIDTH_HEIGHT[0] / 2, WIDTH_HEIGHT[1] / 2)
 
     def add_entity(self, entity):
         self.entity_group[self.entity_id] = entity
@@ -29,10 +30,11 @@ class World:
 
     def render(self, surface):
         surface.blit(self.world_img, (0, 0))
+        pygame.draw.circle(surface, (100, 100, 100), [int(self.NEST_location.x), int(self.NEST_location.y)], self.NEST_R, 1)
         for entity in self.entity_group.values():
             entity.render(surface)
 
-    def get_near_entity(self, location, name, r=100.):
+    def get_near_entity(self, location, name, r=100):
         location = location.copy()
         for entity in self.entity_group.values():
             if entity.name == name:

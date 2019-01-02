@@ -48,7 +48,7 @@ class AntStateSeeking(State):
         if leaf is None:
             return "exploring"
         elif self.ant.location.get_distance_to(leaf.location) < 5.0:
-            self.ant.carry(leaf.img)
+            self.ant.carry(leaf.image)
             self.ant.world.remove_entity(leaf.id)
             return "delivering"
         return None
@@ -75,7 +75,7 @@ class AntStateHunting(State):
                 if randint(1, 5) == 1:
                     spider.bitten()
                 if spider.hp <= 0:
-                    self.ant.carry(spider.img)
+                    self.ant.carry(spider.image)
                     self.ant.world.remove_entity(spider.id)
                     self.killed_spider = True
 

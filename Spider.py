@@ -5,6 +5,8 @@ from GameEntity import  GameEntity
 import pygame
 from random import randint
 
+from Vector2 import Vector2
+
 
 class Spider(GameEntity):
 
@@ -23,7 +25,7 @@ class Spider(GameEntity):
 
     def render(self, surface):
         GameEntity.render(self, surface)
-        x, y = self.location
+        x, y = self.location.x, self.location.y
         w, h = self.image.get_size()
         bar_x = x - 12
         bar_y = y + h / 2
@@ -35,6 +37,8 @@ class Spider(GameEntity):
         if not (0 < x < self.world.WIDTH_HEIGHT[0] + 2 and 0 < self.world.WIDTH_HEIGHT[1] + 2):
             self.world.remove_entity(self.id)
             return
+        if randint(1, 50) == 1:
+            self.destination = Vector2(randint(0, self.world.WIDTH_HEIGHT[0] + 50), randint(0, self.world.WIDTH_HEIGHT[1] + 50))
         GameEntity.process(self, time_passed)
 
 

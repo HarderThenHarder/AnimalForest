@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-
+import time
 from Ant import Ant
 from Leaf import Leaf
 from Spider import Spider
@@ -46,15 +46,15 @@ def main():
                 pygame.quit()
                 exit()
 
-        if randint(1, 10) == 1:
+        if randint(1, 20) == 1:
             leaf = Leaf(world, leaf_img)
             leaf.location = Vector2(randint(0, WIDTH_HEIGHT[0]), randint(0, WIDTH_HEIGHT[1]))
             world.add_entity(leaf)
 
-        if randint(1, 10) == 1:
+        if randint(1, 100) == 1:
             spider = Spider(world, spider_img)
-            spider.location = Vector2(-50, randint(0, WIDTH_HEIGHT[1]))
-            spider.destination = Vector2(WIDTH_HEIGHT[0] + 50, randint(0, WIDTH_HEIGHT[1]))
+            spider.location = Vector2(randint(0, WIDTH_HEIGHT[0]), 0)
+            spider.destination = Vector2(randint(0, WIDTH_HEIGHT[0]), randint(0, WIDTH_HEIGHT[1]))
             world.add_entity(spider)
 
         world.process(time_passed)

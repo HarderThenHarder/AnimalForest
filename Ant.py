@@ -21,7 +21,7 @@ class Ant(GameEntity):
         GameEntity.render(self, surface)
         # Extra render method "Draw Carry Image"
         if self.carry_img:
-            x, y = self.location
+            x, y = self.location.x, self.location.y
             w, h = self.carry_img.get_size()
             surface.blit(self.carry_img, (x - w / 2, y - h / 2))
 
@@ -29,7 +29,7 @@ class Ant(GameEntity):
         self.carry_img = img
 
     def drop(self, surface):
-        x, y = self.location
+        x, y = self.location.x, self.location.y
         w, h = self.carry_img.get_size()
         surface.blit(self.carry_img, (x - w / 2, y - h / 2))
         self.carry_img = None

@@ -9,20 +9,20 @@ class Vector2:
 
     def __add__(self, other):
         assert type(self) == type(other), "Vector2(type) must add the Vector2(type)"
-        self.x += other.x
-        self.y += other.y
-        return self
+        x = self.x + other.x
+        y = self.y + other.y
+        return Vector2(x, y)
 
     def __sub__(self, other):
         assert type(self) == type(other), "Vector2(type) must sub the Vector2(type)"
-        self.x -= other.x
-        self.y -= other.y
-        return self
+        x = self.x - other.x
+        y = self.y - other.y
+        return Vector2(x, y)
 
     def __mul__(self, value):
-        self.x *= value
-        self.y *= value
-        return self
+        x = self.x * value
+        y = self.y * value
+        return Vector2(x, y)
 
     def __repr__(self):
         return "Vector2(%r, %r)" % (self.x, self.y)
@@ -35,11 +35,13 @@ class Vector2:
         return self.x * other.x + self.y * other.y
 
     def normalization(self):
-        x = self.x / self.__abs__()
-        y = self.y / self.__abs__()
-        self.x = x
-        self.y = y
-        return self
+        if self.__abs__():
+            x = self.x / self.__abs__()
+            y = self.y / self.__abs__()
+        else:
+            x = 0
+            y = 0
+        return Vector2(x, y)
 
     def copy(self):
         return Vector2(self.x, self.y)
