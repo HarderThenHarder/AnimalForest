@@ -11,15 +11,18 @@ class Vector2:
         assert type(self) == type(other), "Vector2(type) must add the Vector2(type)"
         self.x += other.x
         self.y += other.y
+        return self
 
     def __sub__(self, other):
         assert type(self) == type(other), "Vector2(type) must sub the Vector2(type)"
         self.x -= other.x
         self.y -= other.y
+        return self
 
     def __mul__(self, value):
         self.x *= value
         self.y *= value
+        return self
 
     def __repr__(self):
         return "Vector2(%r, %r)" % (self.x, self.y)
@@ -36,6 +39,7 @@ class Vector2:
         y = self.y / self.__abs__()
         self.x = x
         self.y = y
+        return self
 
     def copy(self):
         return Vector2(self.x, self.y)

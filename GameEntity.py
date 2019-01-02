@@ -1,4 +1,4 @@
-import Vector2
+from Vector2 import Vector2
 from StateMachine import StateMachine
 
 
@@ -14,13 +14,14 @@ class GameEntity:
         self.id = 0
 
     def render(self, surface):
-        x, y = self.location
+        x = self.location.x
+        y = self.location.y
         w, h = self.image.get_size()
         surface.blit(self.image, (x - w / 2, y - h / 2))
 
     def process(self, time_passed):
         time_passed_second = time_passed / 1000
-        self.brain.do_think()
+        self.brain.think()
         if self.destination != self.location:
             vec_to_destination = self.destination - self.location
             distance_to_destination = abs(vec_to_destination)

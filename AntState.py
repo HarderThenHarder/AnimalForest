@@ -61,7 +61,39 @@ class AntStateSeeking(State):
 
 
 class AntStateHunting(State):
-    pass
+
+    def __init__(self, ant):
+        State.__init__(self, "hunting")
+        self.ant = ant
+        self.killed_spider = False
+
+    def do_action(self):
+        spider = self.ant.world.get_entity(self.ant.spider_id)
+        if spider:
+            self.ant.destination = spider.location
+            if spider.location.get_distance_to(self.ant.location) < 15.:
+                if randint(1, 5) == 1:
+                    spider.bitten()
+                if spider.hp <= 0:
+                    self.ant.carry(spider.img)
+                    self.ant.world.remove_entity(spider.id)
+                    self.killed_spider = True
+
+    def check_condition(self):
+        if self.killed_spider:
+            return "delivering"
+        spider = self.ant.world.get_entity(self.ant.spider_id)
+        if not spider:
+            return "exploring"
+        if spider.location.get_distance_to(self.ant.world.NEST_location) > 3 * self.ant.world.NEST_R:
+            return "exploring"
+        return None
+
+    def entry_action(self):
+        self.ant.speed = 160 + randint(0, 50)
+
+    def exit_action(self):
+        self.killed_spider = False
 
 
 class AntStateDelivering(State):
