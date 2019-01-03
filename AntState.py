@@ -33,7 +33,7 @@ class AntStateExploring(State):
         return None
 
     def entry_action(self):
-        self.ant.speed = 120 + randint(-30, 30)
+        self.ant.speed = 100 + randint(-30, 30)
         self.random_destination()
 
 
@@ -90,7 +90,7 @@ class AntStateHunting(State):
         return None
 
     def entry_action(self):
-        self.ant.speed = 160 + randint(0, 50)
+        self.ant.speed = 130 + randint(0, 50)
 
     def exit_action(self):
         self.killed_spider = False

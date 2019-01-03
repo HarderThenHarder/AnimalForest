@@ -56,7 +56,7 @@ def main():
             leaf.location = Vector2(randint(0, WIDTH_HEIGHT[0]), randint(0, WIDTH_HEIGHT[1]))
             world.add_entity(leaf)
 
-        if randint(1, 500) == 1:
+        if randint(1, 300) == 1:
             spider = Spider(world, spider_img)
             spider.location = Vector2(randint(0, WIDTH_HEIGHT[0]), 0)
             spider.destination = Vector2(randint(0, WIDTH_HEIGHT[0]), randint(0, WIDTH_HEIGHT[1]))

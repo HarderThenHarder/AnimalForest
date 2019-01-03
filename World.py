@@ -9,7 +9,7 @@ class World:
         self.WIDTH_HEIGHT = WIDTH_HEIGHT
         self.world_img = world_img
         self.NEST_R = 150
-        self.NEST_location = Vector2(WIDTH_HEIGHT[0] - self.NEST_R * 3, WIDTH_HEIGHT[1] - self.NEST_R * 1.5)
+        self.NEST_location = Vector2(WIDTH_HEIGHT[0] - self.NEST_R * 3, WIDTH_HEIGHT[1] - self.NEST_R * 3)
 
     def add_entity(self, entity):
         self.entity_group[self.entity_id] = entity
