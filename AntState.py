@@ -85,7 +85,7 @@ class AntStateHunting(State):
         spider = self.ant.world.get_entity(self.ant.spider_id)
         if not spider:
             return "exploring"
-        if spider.location.get_distance_to(self.ant.world.NEST_location) > 3 * self.ant.world.NEST_R:
+        if spider.location.get_distance_to(self.ant.world.NEST_location) > 1 * self.ant.world.NEST_R:
             return "exploring"
         return None
 

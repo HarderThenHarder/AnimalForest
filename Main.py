@@ -1,6 +1,5 @@
 import pygame
 from pygame.locals import *
-import time
 from Ant import Ant
 from Leaf import Leaf
 from Spider import Spider
@@ -17,19 +16,20 @@ def main():
     WIDTH_HEIGHT = [1920, 1080]
     screen = pygame.display.set_mode(WIDTH_HEIGHT, RESIZABLE, 32)
     clock = Clock()
+    pygame.display.set_caption("AnimalForest v1.0")
 
     # Constant Value
     ANT_NUMBER = 10
 
     # Create world
-    world_img = pygame.Surface(WIDTH_HEIGHT)
-    world_img.fill((255, 255, 255))
+    world_img = pygame.image.load(r"img\world2.png")
     world = World(world_img, WIDTH_HEIGHT)
 
     # Create animal img
     ant_img = pygame.image.load(r"img\ant.png")
     leaf_img = pygame.image.load(r"img\leaf.png")
     spider_img = pygame.image.load(r"img\spider.png")
+    pygame.display.set_icon(ant_img)
 
     # Create ant Object
     for i in range(ANT_NUMBER):
@@ -45,6 +45,11 @@ def main():
             if event.type == QUIT:
                 pygame.quit()
                 exit()
+
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    pygame.quit()
+                    exit()
 
         if randint(1, 20) == 1:
             leaf = Leaf(world, leaf_img)

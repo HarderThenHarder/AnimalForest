@@ -8,8 +8,8 @@ class World:
         self.entity_id = 0
         self.WIDTH_HEIGHT = WIDTH_HEIGHT
         self.world_img = world_img
-        self.NEST_R = 100
-        self.NEST_location = Vector2(WIDTH_HEIGHT[0] / 2, WIDTH_HEIGHT[1] / 2)
+        self.NEST_R = 150
+        self.NEST_location = Vector2(WIDTH_HEIGHT[0] - self.NEST_R * 3, WIDTH_HEIGHT[1] - self.NEST_R * 1.5)
 
     def add_entity(self, entity):
         self.entity_group[self.entity_id] = entity
@@ -30,7 +30,8 @@ class World:
 
     def render(self, surface):
         surface.blit(self.world_img, (0, 0))
-        pygame.draw.circle(surface, (100, 100, 100), [int(self.NEST_location.x), int(self.NEST_location.y)], self.NEST_R, 2)
+        pygame.draw.circle(surface, (150, 0, 0), [int(self.NEST_location.x), int(self.NEST_location.y)], self.NEST_R, 2)
+        pygame.draw.rect(surface, (100, 0, 0), (self.NEST_location.x - 5, self.NEST_location.y - 5, 10, 10))
         for entity in self.entity_group.values():
             entity.render(surface)
 
