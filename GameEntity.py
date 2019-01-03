@@ -1,5 +1,6 @@
 from Vector2 import Vector2
 from StateMachine import StateMachine
+import pygame
 
 
 class GameEntity:
@@ -12,6 +13,8 @@ class GameEntity:
         self.destination = Vector2(0, 0)
         self.brain = StateMachine()
         self.id = 0
+        self.right_image = image
+        self.left_image = pygame.transform.flip(self.image, 1, 0)
 
     def render(self, surface):
         x = self.location.x
@@ -23,6 +26,11 @@ class GameEntity:
         time_passed_second = time_passed / 1000
         self.brain.think()
         if self.destination != self.location:
+            # Set walk to left or right Image
+            if self.destination.x < self.location.x:
+                self.image = self.left_image
+            else:
+                self.image = self.right_image
             vec_to_destination = self.destination - self.location
             distance_to_destination = abs(vec_to_destination)
             heading = vec_to_destination.normalization()

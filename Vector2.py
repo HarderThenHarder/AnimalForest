@@ -49,6 +49,10 @@ class Vector2:
     def get_distance_to(self, other):
         assert type(self) == type(other), "Vector2(type) must calculate with Vector2(type)"
         return math.hypot(self.x - other.x, self.y - other.y)
+    
+    def get_angel_to(self, other):
+        assert type(self) == type(other), "Vector2(type) must calculate with Vector2(type)"
+        return math.hypot(self.x - other.x, self.y - other.y)
 
 
 if __name__ == '__main__':

@@ -30,7 +30,7 @@ class World:
 
     def render(self, surface):
         surface.blit(self.world_img, (0, 0))
-        pygame.draw.circle(surface, (100, 100, 100), [int(self.NEST_location.x), int(self.NEST_location.y)], self.NEST_R, 1)
+        pygame.draw.circle(surface, (100, 100, 100), [int(self.NEST_location.x), int(self.NEST_location.y)], self.NEST_R, 2)
         for entity in self.entity_group.values():
             entity.render(surface)
 
